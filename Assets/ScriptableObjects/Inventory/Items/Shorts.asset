@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e1bdca8a401476429810a908c797638, type: 3}
+  m_Name: Shorts
+  m_EditorClassIdentifier: 
+  m_DataComponents:
+    m_DataComponentsList:
+    - id: 0
+  Name: Shorts
+  Sprite: {fileID: 21300000, guid: 4560e5c3787dfa446a97733f55412622, type: 3}
+  ItemType: {fileID: 11400000, guid: 58bd0c9d163ec6747be0e3d4655d2c30, type: 2}
+  references:
+    version: 1
+    00000000:
+      type: {class: StatModifierDataComponent, ns: , asm: StatsSystem}
+      data:
+        m_Modifier:
+          m_ImpactedStat: {fileID: 11400000, guid: a7549c5f068089b4382efc6207fe8426, type: 2}
+          m_ModifierValue: 50

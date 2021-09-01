@@ -1,9 +1,7 @@
 {
-    "name": "InventorySystem",
+    "name": "Common",
     "rootNamespace": "",
-    "references": [
-        "GUID:d2473748eae554d4a89b28d08bf53e5f"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

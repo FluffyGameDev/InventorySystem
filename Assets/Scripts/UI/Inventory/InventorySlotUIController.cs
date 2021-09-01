@@ -9,6 +9,12 @@ public class InventorySlotUIController : MonoBehaviour
     private Text QuantityField;
     [SerializeField]
     private Image ImageField;
+    [SerializeField]
+    private Sprite EmptySlotSprite;
+    [SerializeField]
+    private Color HighlightColor;
+
+    private Image m_Image;
 
     private InventorySystem.InventorySlot m_InventorySlot;
     public InventorySystem.InventorySlot InventorySlot
@@ -22,12 +28,37 @@ public class InventorySlotUIController : MonoBehaviour
             }
 
             m_InventorySlot = value;
-            UpdateSlot();
+            UpdateSlot(m_InventorySlot);
 
             if (m_InventorySlot != null)
             {
                 m_InventorySlot.OnItemChange += UpdateSlot;
             }
+        }
+    }
+
+    private Color m_DefaultColor;
+    private bool m_IsHighlighted = false;
+    public bool IsHighlighted
+    {
+        get { return m_IsHighlighted; }
+        set
+        {
+            m_IsHighlighted = value;
+
+            if (m_Image != null)
+            {
+                m_Image.color = (m_IsHighlighted ? HighlightColor : m_DefaultColor);
+            }
+        }
+    }
+
+    private void Start()
+    {
+        m_Image = GetComponent<Image>();
+        if (m_Image != null)
+        {
+            m_DefaultColor = m_Image.color;
         }
     }
 
@@ -45,7 +76,7 @@ public class InventorySlotUIController : MonoBehaviour
         }
     }
 
-    private void UpdateSlot()
+    private void UpdateSlot(InventorySystem.InventorySlot slot)
     {
         bool displaySlot = m_InventorySlot != null && m_InventorySlot.Item != null;
 
@@ -63,8 +94,8 @@ public class InventorySlotUIController : MonoBehaviour
 
         if (ImageField != null)
         {
-            ImageField.gameObject.SetActive(displaySlot);
-            ImageField.sprite = (displaySlot ? m_InventorySlot.Item.Sprite : null);
+            ImageField.gameObject.SetActive(displaySlot || EmptySlotSprite != null);
+            ImageField.sprite = (displaySlot ? m_InventorySlot.Item.Sprite : EmptySlotSprite);
         }
     }
 }

@@ -69,7 +69,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 18
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 7
@@ -173,6 +173,8 @@ MonoBehaviour:
   TextField: {fileID: 784254394271851302}
   QuantityField: {fileID: 1625157326898558908}
   ImageField: {fileID: 5013681199881746505}
+  EmptySlotSprite: {fileID: 0}
+  HighlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &8877923982949222955
 GameObject:
   m_ObjectHideFlags: 0

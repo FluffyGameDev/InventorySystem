@@ -11,6 +11,7 @@ public class InventoryCursorController : MonoBehaviour
     private InventoryChannel InventoryChannel;
 
     private InventorySystem.InventorySlot m_CursorSlot = new InventorySystem.InventorySlot();
+    public InventorySystem.InventorySlot CursorSlot => m_CursorSlot;
 
     private void Awake()
     {

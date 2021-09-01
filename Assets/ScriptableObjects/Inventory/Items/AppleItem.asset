@@ -12,5 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1bdca8a401476429810a908c797638, type: 3}
   m_Name: AppleItem
   m_EditorClassIdentifier: 
+  m_DataComponents:
+    m_DataComponentsList: []
   Name: Apple
   Sprite: {fileID: 21300000, guid: e97e2656595cdc6489ef18abcb7f5506, type: 3}
+  ItemType: {fileID: 0}
+  StatModifier:
+    m_ImpactedStat: {fileID: 0}
+    m_ModifierValue: 0
+  references:
+    version: 1
