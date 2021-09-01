@@ -12,6 +12,20 @@ public class DataComponentListDrawerUIE : PropertyDrawer
     private List<Type> m_ObjectTypes;
     private int m_SelectedTypeIndex = 0;
 
+    public DataComponentListDrawerUIE()
+    {
+        m_ObjectTypes = AppDomain.CurrentDomain.GetAssemblies()
+                     .SelectMany(assembly => assembly.GetTypes())
+                     .Where(type => type.IsSubclassOf(typeof(DataComponent))).ToList();
+
+
+        m_ObjectTypeNames = new string[m_ObjectTypes.Count];
+        for (int i = 0; i < m_ObjectTypes.Count; ++i)
+        {
+            m_ObjectTypeNames[i] = m_ObjectTypes[i].Name;
+        }
+    }
+
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
         float height = EditorGUI.GetPropertyHeight(property);
@@ -43,15 +57,21 @@ public class DataComponentListDrawerUIE : PropertyDrawer
 
             SerializedProperty listProperty = property.FindPropertyRelative("m_DataComponentsList");
 
-            m_ObjectTypes = AppDomain.CurrentDomain.GetAssemblies()
-                     .SelectMany(assembly => assembly.GetTypes())
-                     .Where(type => type.IsSubclassOf(typeof(DataComponent))).ToList();
-
-
-            m_ObjectTypeNames = new string[m_ObjectTypes.Count];
-            for (int i = 0; i < m_ObjectTypes.Count; ++i)
+            if (m_ObjectTypes == null)
             {
-                m_ObjectTypeNames[i] = m_ObjectTypes[i].Name;
+                // This is far from ideal !!!
+                // TODO: find another way to init those lists!!!
+
+                m_ObjectTypes = AppDomain.CurrentDomain.GetAssemblies()
+                         .SelectMany(assembly => assembly.GetTypes())
+                         .Where(type => type.IsSubclassOf(typeof(DataComponent))).ToList();
+
+
+                m_ObjectTypeNames = new string[m_ObjectTypes.Count];
+                for (int i = 0; i < m_ObjectTypes.Count; ++i)
+                {
+                    m_ObjectTypeNames[i] = m_ObjectTypes[i].Name;
+                }
             }
 
             m_SelectedTypeIndex = EditorGUI.Popup(new Rect(position.x, position.y, position.width - 20.0f, 18.0f), m_SelectedTypeIndex, m_ObjectTypeNames);
